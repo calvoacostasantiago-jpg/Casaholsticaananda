@@ -9,46 +9,42 @@ interface TerapiaHolisticaDetailProps {
 export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaDetailProps) {
   const services = [
     {
-      name: 'Reiki y Sanación Energética',
-      description: 'Equilibra tu energía vital y desbloquea canales de sanación',
-      price: '$80.000',
-    },
-    {
-      name: 'Lectura de Aura y Chakras',
-      description: 'Diagnóstico energético completo de tu campo áurico',
-      price: '$70.000',
-    },
-    {
-      name: 'Terapia con Cristales',
-      description: 'Sanación con gemas y cristales de alta vibración',
-      price: '$90.000',
-    },
-    {
-      name: 'Aromaterapia Terapéutica',
-      description: 'Tratamiento holístico con aceites esenciales puros',
-      price: '$65.000',
-    },
-    {
-      name: 'Sesión Integral Completa',
-      description: 'Combinación de técnicas personalizadas según tus necesidades',
+      name: 'Liberación emocional',
+      description:
+        'Soltar tristeza, miedo o ansiedad liberando bloqueos que afectan tu bienestar. Conecta con tu equilibrio interno y siente más paz, claridad y liviandad.',
       price: '$120.000',
+      duration: '60-75 min'
+    },
+    {
+      name: 'Masaje analgésico con bolsas herbales calientes',
+      description:
+        'Experiencia profundamente relajante, analgésica y curativa con paquetes de tela natural rellenos de hierbas, aromaterapia y cuencos tibetanos.',
+      price: '$120.000',
+      duration: '70-90 min'
+    },
+    {
+      name: 'Guía energética con Radiónica y Radiestesia (Tabla Radiónica)',
+      description:
+        'Limpieza y protección de aura, hogar y negocio. Diagnóstico con tablas biométricas y activación de frecuencias para que la vida fluya de forma armoniosa.',
+      price: '$140.000',
+      duration: '60-90 min',
       featured: true
     }
   ];
 
   const benefits = [
-    'Reducción del estrés y la ansiedad',
-    'Equilibrio emocional y mental',
-    'Alivio de dolores físicos y contracturas',
-    'Mejora de la calidad del sueño',
-    'Fortalecimiento del sistema inmunológico',
-    'Mayor claridad mental y enfoque',
-    'Liberación de bloqueos energéticos',
-    'Sanación de traumas emocionales',
-    'Aumento de la vitalidad y energía',
-    'Conexión profunda con tu ser interior',
-    'Armonización de cuerpo, mente y espíritu',
-    'Prevención de enfermedades crónicas'
+    'Paz, claridad y liviandad emocional',
+    'Liberación de emociones atrapadas y bloqueos',
+    'Relajación profunda y alivio analgésico',
+    'Ambientes más ligeros en hogar y negocio',
+    'Protección y limpieza de aura y espacios',
+    'Diagnóstico energético con tablas biométricas',
+    'Activación de frecuencias para que la vida fluya',
+    'Menos ansiedad y mejor descanso',
+    'Mayor foco para decisiones y propósito',
+    'Reconexión con tu equilibrio natural',
+    'Soporte en crisis emocionales o estancamiento',
+    'Acompañamiento respetuoso y personalizado'
   ];
 
   return (
@@ -177,10 +173,14 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
               className="text-lg md:text-xl text-white/90 leading-relaxed"
               style={{ fontFamily: 'Open Sans, sans-serif' }}
             >
-              Descubre los beneficios de la Terapia Holística en Casa Holística Ananda. 
-              Te acompañamos a sanar cuerpo, mente y espíritu a través de métodos integrativos, 
-              armonizando tu energía y devolviendo el bienestar a tu vida.
+              Liberación emocional, masaje analgésico con bolsas herbales y guía energética con radiónica y radiestesia. 
+              Te acompañamos a soltar bloqueos, armonizar tu energía y darle un flujo más ligero a tu vida.
             </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
+            <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm text-white/85">Liberación emocional · Masaje analgésico · Radiónica</span>
+            <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm text-white/85">Atención 1 a 1 · Agenda flexible</span>
           </div>
 
           {/* Badge decorativo */}
@@ -199,20 +199,33 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
           </motion.div>
         </motion.div>
 
-        {/* Imagen representativa */}
+        {/* Imagen y reel en paralelo */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-4xl mx-auto mb-12 rounded-3xl overflow-hidden shadow-2xl border-4 border-[#d4af37]/30"
+          className="max-w-5xl mx-auto mb-12 grid md:grid-cols-[1.1fr_0.9fr] gap-4 items-stretch"
         >
-          <div className="relative h-64 md:h-96">
+          <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-[#d4af37]/30 relative min-h-[280px]">
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1591630060069-7cb1f16261b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob2xpc3RpYyUyMGhlYWxpbmclMjBoYW5kcyUyMGVuZXJneXxlbnwxfHx8fDE3NzEyNTUzNzV8MA&ixlib=rb-4.1.0&q=80&w=1080"
               alt="Terapia Holística"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2e0d4b] via-transparent to-transparent" />
+          </div>
+          <div className="flex items-center justify-center">
+            <div className="relative w-full max-w-xs aspect-[9/16] rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+              <iframe
+                src="https://www.instagram.com/reel/DRiY686DjSc/embed"
+                title="Reel de Instagram Terapia Holística"
+                allow="encrypted-media; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+                scrolling="no"
+                frameBorder="0"
+              ></iframe>
+            </div>
           </div>
         </motion.div>
 
@@ -281,12 +294,85 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
                     >
                       {service.price}
                     </p>
+                    <p className="text-xs text-white/75" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      {service.duration || '60-90 min'}
+                    </p>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {/* Comparador rápido */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="max-w-5xl mx-auto mb-10"
+        >
+          <h3 
+            className="text-2xl md:text-3xl text-center text-[#d4af37] mb-6"
+            style={{ fontFamily: 'Cinzel, serif', fontWeight: 700 }}
+          >
+            Comparador de terapias
+          </h3>
+          <div className="grid md:grid-cols-3 gap-4">
+            {services.map((service, index) => (
+              <div
+                key={`compare-${index}`}
+                className="p-4 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm text-white/90 flex flex-col gap-2"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <p className="font-semibold text-white" style={{ fontFamily: 'Montserrat, sans-serif' }}>{service.name}</p>
+                  <span className="text-sm px-2 py-1 rounded-full bg-white/10 border border-white/20">{service.duration || '60-90 min'}</span>
+                </div>
+                <p className="text-sm text-white/80 leading-relaxed" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+                  {service.description}
+                </p>
+                <p className="text-[#d4af37] font-bold" style={{ fontFamily: 'Cinzel, serif' }}>{service.price}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Situaciones típicas */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.65 }}
+          className="max-w-4xl mx-auto mb-10 p-6 rounded-3xl bg-white/10 border border-white/20 backdrop-blur-sm"
+        >
+          <div className="flex flex-col gap-4">
+            <div>
+              <p className="text-sm uppercase tracking-[0.18em] text-white/80" style={{ fontFamily: 'Montserrat, sans-serif' }}>¿Sientes que tu energía está bloqueada?</p>
+              <h3 className="text-2xl text-white" style={{ fontFamily: 'Cinzel, serif', fontWeight: 700 }}>Guía energética con radiónica y radiestesia</h3>
+              <p className="text-white/85" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+                Con tablas biométricas y péndulo leemos bloqueos, emociones atrapadas y niveles de energía. Activamos frecuencias para que la vida fluya de forma más armoniosa.
+              </p>
+            </div>
+            <ul className="grid md:grid-cols-2 gap-2 text-white/85" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+              <li className="p-3 rounded-xl bg-white/5 border border-white/15">Bloqueos recurrentes en lo personal o laboral</li>
+              <li className="p-3 rounded-xl bg-white/5 border border-white/15">Ambientes cargados en casa o negocio</li>
+              <li className="p-3 rounded-xl bg-white/5 border border-white/15">Estrés, ansiedad o sensación de estancamiento</li>
+              <li className="p-3 rounded-xl bg-white/5 border border-white/15">Crisis emocionales/financieras o búsqueda de propósito</li>
+            </ul>
+            <div className="flex flex-wrap items-center gap-3">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={onWhatsApp}
+                className="px-6 py-3 rounded-full bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-semibold shadow-[0_0_24px_rgba(37,211,102,0.4)]"
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
+              >
+                Agenda tu terapia
+              </motion.button>
+              <p className="text-white/70 text-sm" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+                Enfoque de bienestar. No reemplaza atención médica.
+              </p>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Beneficios de la Terapia Holística */}
         <motion.div
@@ -343,8 +429,13 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
           {/* Card de Angélica */}
           <div className="p-8 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-sm rounded-3xl border-2 border-[#d4af37]/50 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-6">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#d4af37] to-[#d4669f] flex items-center justify-center flex-shrink-0 border-4 border-white/30">
-                <User className="w-12 h-12 text-white" />
+              <div className="w-28 h-28 rounded-full bg-gradient-to-br from-[#d4af37] to-[#d4669f] flex items-center justify-center flex-shrink-0 border-4 border-white/30 overflow-hidden shadow-lg">
+                <img
+                  src="/assets/cd60ea2b1a39a7831da0d12f7b5870f382116390.png"
+                  alt="Angélica Montes Terapeuta Holística"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: 'center top' }}
+                />
               </div>
               <div className="text-center md:text-left">
                 <p 
@@ -384,8 +475,7 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
                       className="text-white/80 leading-relaxed"
                       style={{ fontFamily: 'Open Sans, sans-serif' }}
                     >
-                      5 años acompañando a personas en programas de prevención y manejo de enfermedades crónicas, 
-                      promoviendo bienestar y calidad de vida.
+                      Acompañamiento respetuoso para liberar bloqueos emocionales y recuperar bienestar integral.
                     </p>
                   </div>
                 </div>
@@ -405,8 +495,7 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
                       className="text-white/80 leading-relaxed"
                       style={{ fontFamily: 'Open Sans, sans-serif' }}
                     >
-                      Apoyo humano y profesional a familias y pacientes en el proceso de morir en casa, 
-                      brindando contención y serenidad.
+                      Presencia compasiva para sostener procesos emocionales exigentes y traer calma.
                     </p>
                   </div>
                 </div>
@@ -426,8 +515,7 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
                       className="text-white/80 leading-relaxed"
                       style={{ fontFamily: 'Open Sans, sans-serif' }}
                     >
-                      Certificada en medicina Sintergética (Politécnico Grancolombiano), 
-                      radiónica y radiestesia (Escuela de Radiestesia diferencial y efectiva).
+                      Certificada en medicina Sintergética, radiónica y radiestesia para limpiezas y activaciones energéticas.
                     </p>
                   </div>
                 </div>
@@ -481,10 +569,25 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
               className="text-white/70 mt-4"
               style={{ fontFamily: 'Open Sans, sans-serif' }}
             >
-              📲 322 663 9527
+              📲 573002353499
+            </p>
+            <p 
+              className="text-white/60 text-sm"
+              style={{ fontFamily: 'Open Sans, sans-serif' }}
+            >
+              Enfoque de bienestar y armonización energética. No reemplaza atención médica.
             </p>
           </div>
         </motion.div>
+      </div>
+      <div className="fixed inset-x-0 bottom-4 px-4 md:hidden z-40">
+        <button
+          onClick={onWhatsApp}
+          className="w-full py-3 rounded-full bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-semibold shadow-[0_0_24px_rgba(37,211,102,0.5)]"
+          style={{ fontFamily: 'Montserrat, sans-serif' }}
+        >
+          Agendar por WhatsApp
+        </button>
       </div>
     </div>
   );

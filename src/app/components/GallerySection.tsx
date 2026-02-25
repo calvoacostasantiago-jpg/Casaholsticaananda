@@ -1,12 +1,12 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import exteriorImage from 'figma:asset/20077905e225fc33e5a5e5aca8b5f0d5a376543d.png';
-import yogaRoomImage from 'figma:asset/ad7ab85df9fcd504821d5a2d263d12fe4a225d2d.png';
-import therapyRoomImage from 'figma:asset/f4214becafc267adde0ef5377cfbc1bf4b05d209.png';
-import gardenImage from 'figma:asset/ade65295e44df206a45fb84321755f368d8a953b.png';
-import consultorioImage from 'figma:asset/177ee6866d70aad559c8b8e4fbc9c5c493a4fa19.png';
-import colorfulRoomImage from 'figma:asset/e38308731caebb9355d48719b570390ce183fcdf.png';
+// import exteriorImage from 'figma:asset/20077905e225fc33e5a5e5aca8b5f0d5a376543d.png';
+// import yogaRoomImage from 'figma:asset/ad7ab85df9fcd504821d5a2d263d12fe4a225d2d.png';
+// import therapyRoomImage from 'figma:asset/f4214becafc267adde0ef5377cfbc1bf4b05d209.png';
+// import gardenImage from 'figma:asset/ade65295e44df206a45fb84321755f368d8a953b.png';
+// import consultorioImage from 'figma:asset/177ee6866d70aad559c8b8e4fbc9c5c493a4fa19.png';
+// import colorfulRoomImage from 'figma:asset/e38308731caebb9355d48719b570390ce183fcdf.png';
 
 export default function GallerySection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -14,37 +14,37 @@ export default function GallerySection() {
 
   const images = [
     {
-      src: exteriorImage,
+      src: '/assets/20077905e225fc33e5a5e5aca8b5f0d5a376543d.png',
       alt: 'Entrada Casa Holística Ananda',
       title: 'Bienvenido a Casa Ananda',
       description: 'Un espacio acogedor donde comienza tu transformación'
     },
     {
-      src: yogaRoomImage,
+      src: '/assets/ad7ab85df9fcd504821d5a2d263d12fe4a225d2d.png',
       alt: 'Salón de yoga y meditación',
       title: 'Salón de Prácticas',
       description: 'Espacio sagrado para yoga, meditación y talleres grupales'
     },
     {
-      src: gardenImage,
+      src: '/assets/ade65295e44df206a45fb84321755f368d8a953b.png',
       alt: 'Jardín terapéutico',
       title: 'Jardín de Sanación',
       description: 'Área exterior para conectar con la naturaleza'
     },
     {
-      src: therapyRoomImage,
+      src: '/assets/f4214becafc267adde0ef5377cfbc1bf4b05d209.png',
       alt: 'Sala de terapias holísticas',
       title: 'Sala de Terapias',
       description: 'Ambiente de paz para tus sesiones individuales'
     },
     {
-      src: consultorioImage,
+      src: '/assets/177ee6866d70aad559c8b8e4fbc9c5c493a4fa19.png',
       alt: 'Consultorio de sanación',
       title: 'Consultorio Holístico',
       description: 'Espacio íntimo para tratamientos personalizados'
     },
     {
-      src: colorfulRoomImage,
+      src: '/assets/e38308731caebb9355d48719b570390ce183fcdf.png',
       alt: 'Sala de talleres',
       title: 'Sala de Encuentros',
       description: 'Un espacio vibrante para talleres y círculos de sanación'

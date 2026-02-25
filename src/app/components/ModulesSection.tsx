@@ -1,8 +1,8 @@
 import { CheckCircle, Sparkles, Star, Zap } from "lucide-react";
 import { motion } from "motion/react";
-import module1Image from "figma:asset/cf1164c52b3a1752e556056d05f3d01138b7b823.png";
-import module2Image from "figma:asset/fe3f087c02b2873d08bbe9a1fbbaea47e615411b.png";
-import module3Image from "figma:asset/b15529c5b757ce9e07d05bdbef5e4f2bcdcc8196.png";
+// import module1Image from "figma:asset/cf1164c52b3a1752e556056d05f3d01138b7b823.png";
+// import module2Image from "figma:asset/fe3f087c02b2873d08bbe9a1fbbaea47e615411b.png";
+// import module3Image from "figma:asset/b15529c5b757ce9e07d05bdbef5e4f2bcdcc8196.png";
 
 interface ModuleProps {
   number: number;
@@ -188,7 +188,7 @@ export default function ModulesSection() {
       price: "$215.000 COP",
       available: true,
       highlighted: true,
-      image: module1Image,
+      image: '/assets/cf1164c52b3a1752e556056d05f3d01138b7b823.png',
     },
     {
       number: 2,
@@ -206,7 +206,7 @@ export default function ModulesSection() {
         "Herramienta para armonización y sanación integral",
       ],
       available: false,
-      image: module2Image,
+      image: '/assets/fe3f087c02b2873d08bbe9a1fbbaea47e615411b.png',
     },
     {
       number: 3,
@@ -221,7 +221,7 @@ export default function ModulesSection() {
         "Restaura tu equilibrio físico, mental, emocional y espiritual",
       ],
       available: false,
-      image: module3Image,
+      image: '/assets/b15529c5b757ce9e07d05bdbef5e4f2bcdcc8196.png',
     },
   ];
 

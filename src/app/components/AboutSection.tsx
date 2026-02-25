@@ -1,7 +1,7 @@
 import { Heart, Award, Users, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
-import heroLogo from 'figma:asset/0f41631905cbdaeb70a79c7517a6468072b7820d.png';
-import angelicaImage from 'figma:asset/cd60ea2b1a39a7831da0d12f7b5870f382116390.png';
+// import heroLogo from 'figma:asset/0f41631905cbdaeb70a79c7517a6468072b7820d.png';
+// import angelicaImage from 'figma:asset/cd60ea2b1a39a7831da0d12f7b5870f382116390.png';
 
 export default function AboutSection() {
   const handleContact = () => {
@@ -45,7 +45,7 @@ export default function AboutSection() {
         >
           <div className="inline-block mb-6">
             <img 
-              src={heroLogo} 
+              src={"/assets/0f41631905cbdaeb70a79c7517a6468072b7820d.png"}
               alt="Logo Entra al Mundo" 
               className="w-80 h-80 object-contain mx-auto"
             />
@@ -62,7 +62,7 @@ export default function AboutSection() {
             <div className="relative group">
               <div className="absolute inset-0 bg-[#d4af37] rounded-full blur-md opacity-30 group-hover:opacity-60 transition-opacity duration-300"></div>
               <img 
-                src={angelicaImage} 
+                src={"/assets/cd60ea2b1a39a7831da0d12f7b5870f382116390.png"}
                 alt="Angélica Montes" 
                 className="relative w-28 h-28 rounded-full object-cover border-2 border-[#d4af37] shadow-lg transform transition-transform duration-300 group-hover:scale-105"
               />
