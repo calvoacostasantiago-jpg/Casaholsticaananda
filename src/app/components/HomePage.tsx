@@ -1,29 +1,34 @@
 import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Lock, LogOut, Pencil, Plus, Save, ShieldCheck, Trash2, X } from 'lucide-react';
+import { ArrowRight, Trash2 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import GallerySection from './GallerySection';
 import LocationSection from './LocationSection';
 import DecorativeElements from './DecorativeElements';
 import { LandingContent, Module } from '../types';
+import { defaultLanding } from '../defaults/landing';
 import ModuleDetail from './ModuleDetail';
 import EscuelaEspiritualContent from './EscuelaEspiritualContent';
 import ConstelacionesFamiliaresDetail from './ConstelacionesFamiliaresDetail';
 import HipnosisDetail from './HipnosisDetail';
 import AstrologiaDetail from './AstrologiaDetail';
+import { WHATSAPP_MAIN } from '../config/contact';
+import Footer from './Footer';
+import { AdminPanel } from './AdminPanel';
+import { AdminForm } from './AdminForm';
 
 const DEFAULT_MODULES: Module[] = [
   {
     id: 'terapia',
-    title: 'Terapia Holística',
-    description: 'Sesiones personalizadas de sanación integral para equilibrar cuerpo, mente y espíritu.',
+    title: 'Terapia Radiónica y Radiestesia',
+    description: 'Sesiones personalizadas con enfoque radiónico y radiestesia para equilibrar cuerpo, mente y espíritu.',
     image: 'https://images.unsplash.com/photo-1740748776786-74365e440be4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob2xpc3RpYyUyMHRoZXJhcHklMjBtYXNzYWdlfGVufDF8fHx8MTc3MDk0MzcwOXww&ixlib=rb-4.1.0&q=80&w=1080',
-    whatsappMessage: 'Hola, quiero información sobre Terapia Holística en Casa Holística Ananda.'
+    whatsappMessage: 'Hola, quiero información sobre Terapia Radiónica y Radiestesia en Casa Holística Ananda.'
   },
   {
     id: 'escuela-espiritual',
-    title: 'Escuela Espiritual',
-    description: 'Entra Al Mundo - Aprende radiónica, radiestesia y sanación holística con nuestros módulos transformadores.',
+    title: 'Escuela Radiónica y Radiestesia',
+    description: 'Entra al mundo de la radiónica, radiestesia y sanación holística con nuestros módulos transformadores.',
     image: 'https://images.unsplash.com/photo-1760691313751-98262affa4f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcGlyaXR1YWwlMjBoZWFsaW5nJTIwbWVkaXRhdGlvbnxlbnwxfHx8fDE3NzA5ODk5MzF8MA&ixlib=rb-4.1.0&q=80&w=1080',
     whatsappMessage: 'Hola, quiero saber más sobre la Escuela Espiritual de Casa Holística Ananda.'
   },
@@ -84,30 +89,6 @@ const emptyModule: Module = {
   landing: undefined
 };
 
-const defaultLanding: LandingContent = {
-  heroTitle: 'Nueva Área',
-  heroSubtitle: 'Subtítulo inspirador',
-  heroDescription: 'Describe brevemente la esencia de esta área o servicio.',
-  heroImage: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
-  secondaryImage: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80',
-  accentColor: '#e0c3fc',
-  backgroundFrom: '#1a237e',
-  backgroundTo: '#0d133d',
-  bulletPoints: [
-    'Beneficio clave 1',
-    'Beneficio clave 2',
-    'Incluye CTA a WhatsApp',
-    'Puedes personalizar colores'
-  ],
-  ctaText: 'Agenda por WhatsApp',
-  whatsappNumber: '573226639527',
-  therapistName: 'Angélica Montes',
-  serviceName: 'Terapia Holística',
-  instagramUrl: '',
-  facebookUrl: '',
-  templateType: 'plantilla1'
-};
-
 const slugify = (value: string) =>
   value
     .toLowerCase()
@@ -140,6 +121,9 @@ export default function HomePage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [selectedModule, setSelectedModule] = useState<Module | null>(null);
+  const [heroFileName, setHeroFileName] = useState('');
+  const [secondaryFileName, setSecondaryFileName] = useState('');
+  const [migrationApplied, setMigrationApplied] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -162,6 +146,44 @@ export default function HomePage() {
       setIsAdmin(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (migrationApplied) return;
+    let updatedList = modules;
+
+    const hasOldTerapia = modules.some((m) => m.id === 'terapia' && m.title === 'Terapia Holística');
+    if (hasOldTerapia) {
+      updatedList = updatedList.map((m) =>
+        m.id === 'terapia'
+          ? {
+              ...m,
+              title: 'Terapia Radiónica y Radiestesia',
+              description: 'Sesiones personalizadas con enfoque radiónico y radiestesia para equilibrar cuerpo, mente y espíritu.',
+              whatsappMessage: 'Hola, quiero información sobre Terapia Radiónica y Radiestesia en Casa Holística Ananda.'
+            }
+          : m
+      );
+    }
+
+    const hasOldEscuela = modules.some((m) => m.id === 'escuela-espiritual' && m.title === 'Escuela Espiritual');
+    if (hasOldEscuela) {
+      updatedList = updatedList.map((m) =>
+        m.id === 'escuela-espiritual'
+          ? {
+              ...m,
+              title: 'Escuela Radiónica y Radiestesia',
+              description: 'Entra al mundo de la radiónica, radiestesia y sanación holística con nuestros módulos transformadores.'
+            }
+          : m
+      );
+    }
+
+    if (hasOldTerapia || hasOldEscuela) {
+      setModules(updatedList);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedList));
+    }
+    setMigrationApplied(true);
+  }, [modules, migrationApplied]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -195,6 +217,8 @@ export default function HomePage() {
     setFormModule(emptyModule);
     setUseLanding(true);
     setEditingId(null);
+    setHeroFileName('');
+    setSecondaryFileName('');
     setFormOpen(true);
     setFeedback(null);
   };
@@ -203,6 +227,8 @@ export default function HomePage() {
     setFormModule(module);
     setUseLanding(Boolean(module.landing));
     setEditingId(module.id);
+    setHeroFileName('');
+    setSecondaryFileName('');
     setFormOpen(true);
     setFeedback(null);
   };
@@ -280,6 +306,79 @@ export default function HomePage() {
 
   const bulletText = (formModule.landing?.bulletPoints || []).join('\n');
 
+  const readFileAsDataUrl = (file: File, onLoad: (url: string) => void) => {
+    if (!file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result;
+      if (typeof result === 'string') onLoad(result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleHeroFileInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setHeroFileName(file.name);
+    readFileAsDataUrl(file, (url) => updateLandingField('heroImage', url));
+  };
+
+  const handleSecondaryFileInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setSecondaryFileName(file.name);
+    readFileAsDataUrl(file, (url) => updateLandingField('secondaryImage', url));
+  };
+
+  const handleDropHero = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files?.[0];
+    const urlFromDrag = event.dataTransfer.getData('text/uri-list') || event.dataTransfer.getData('text');
+    if (file) {
+      setHeroFileName(file.name);
+      readFileAsDataUrl(file, (url) => updateLandingField('heroImage', url));
+      return;
+    }
+    if (urlFromDrag && (urlFromDrag.startsWith('http') || urlFromDrag.startsWith('data:'))) {
+      updateLandingField('heroImage', urlFromDrag.trim());
+    }
+  };
+
+  const handleDropSecondary = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files?.[0];
+    const urlFromDrag = event.dataTransfer.getData('text/uri-list') || event.dataTransfer.getData('text');
+    if (file) {
+      setSecondaryFileName(file.name);
+      readFileAsDataUrl(file, (url) => updateLandingField('secondaryImage', url));
+      return;
+    }
+    if (urlFromDrag && (urlFromDrag.startsWith('http') || urlFromDrag.startsWith('data:'))) {
+      updateLandingField('secondaryImage', urlFromDrag.trim());
+    }
+  };
+
+  const handleAreaImageFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    readFileAsDataUrl(file, (url) => setFormModule((prev) => ({ ...prev, image: url })));
+  };
+
+  const handleDropAreaImage = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files?.[0];
+    const urlFromDrag = event.dataTransfer.getData('text/uri-list') || event.dataTransfer.getData('text');
+
+    if (file) {
+      readFileAsDataUrl(file, (url) => setFormModule((prev) => ({ ...prev, image: url })));
+      return;
+    }
+
+    if (urlFromDrag && (urlFromDrag.startsWith('http') || urlFromDrag.startsWith('data:'))) {
+      setFormModule((prev) => ({ ...prev, image: urlFromDrag.trim() }));
+    }
+  };
+
   const handleUpdateModule = (updated: Module) => {
     setModules((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
     setSelectedModule(updated);
@@ -336,329 +435,52 @@ export default function HomePage() {
           </div>
         </motion.header>
 
-        {/* Botón fijo para login admin */}
-        {!isAdmin && (
-          <div className="fixed top-4 right-4 z-50">
-            <button
-              onClick={() => setShowLogin((open) => !open)}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-[#d4669f]/40 text-[#5a3d7d] shadow-sm hover:shadow-md"
-            >
-              <Lock className="w-4 h-4" /> Ingresar como administrador
-            </button>
-          </div>
-        )}
-
-        {showLogin && !isAdmin && (
-          <div className="fixed top-16 right-4 z-50 w-[300px] max-w-[90vw]">
-            <div className="bg-white/95 backdrop-blur-sm border border-[#d4669f]/30 rounded-2xl shadow-lg p-4 space-y-3">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2 text-[#5a3d7d] font-semibold" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  <ShieldCheck className="w-4 h-4" /> Acceso admin
-                </div>
-                <button onClick={() => setShowLogin(false)} className="text-[#5a3d7d]/70 hover:text-[#5a3d7d]">
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-              <form onSubmit={handleAdminSubmit} className="space-y-3">
-                <input
-                  type="password"
-                  value={adminCode}
-                  onChange={(event) => setAdminCode(event.target.value)}
-                  placeholder="Contraseña"
-                  className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white text-[#5a3d7d]"
-                />
-                <button
-                  type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#d4669f] to-[#87c4d4] text-white text-sm font-semibold shadow-sm"
-                >
-                  <Lock className="w-4 h-4" /> Entrar
-                </button>
-              </form>
-            </div>
-          </div>
-        )}
-
         <main className="flex-1 py-8 px-4 sm:px-6 md:px-12">
           <div className="max-w-7xl mx-auto">
-            {isAdmin && (
-              <section id="admin" className="mb-8">
-                <div className="bg-white/80 backdrop-blur-sm border border-[#d4669f]/20 rounded-2xl p-4 md:p-6 shadow-sm">
-                  <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                    <div className="flex items-center gap-3 text-[#5a3d7d]">
-                      <ShieldCheck className="w-5 h-5" />
-                      <div>
-                        <p className="font-semibold" style={{ fontFamily: 'Montserrat, sans-serif' }}>Modo administrador activo</p>
-                        <p className="text-sm text-[#5a3d7d]/70" style={{ fontFamily: 'Open Sans, sans-serif' }}>
-                          Edita o agrega áreas. Los cambios se guardan en este dispositivo.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      <button
-                        onClick={startCreate}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#d4669f] to-[#87c4d4] text-white text-sm font-semibold shadow-sm"
-                      >
-                        <Plus className="w-4 h-4" /> Nueva área
-                      </button>
-                      <button
-                        onClick={() => setFormOpen((open) => !open)}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4669f]/30 text-[#5a3d7d] text-sm font-semibold bg-white"
-                      >
-                        {formOpen ? <X className="w-4 h-4" /> : <Pencil className="w-4 h-4" />} {formOpen ? 'Cerrar editor' : 'Abrir editor'}
-                      </button>
-                      <button
-                        onClick={handleLogout}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4669f]/30 text-[#d4669f] text-sm font-semibold bg-white"
-                      >
-                        <LogOut className="w-4 h-4" /> Salir
-                      </button>
-                    </div>
-                  </div>
-
-                  {feedback && (
-                    <p className="mt-3 text-sm text-[#5a3d7d]/80" style={{ fontFamily: 'Open Sans, sans-serif' }}>
-                      {feedback}
-                      {hasCustomContent && ' · Contenido guardado en este navegador.'}
-                    </p>
-                  )}
-                </div>
-              </section>
-            )}
+            <AdminPanel
+              isAdmin={isAdmin}
+              showLogin={showLogin}
+              formOpen={formOpen}
+              adminCode={adminCode}
+              feedback={feedback}
+              hasCustomContent={hasCustomContent}
+              onToggleLogin={() => setShowLogin((open) => !open)}
+              onCloseLogin={() => setShowLogin(false)}
+              onSubmitCode={handleAdminSubmit}
+              onChangeCode={setAdminCode}
+              onLogout={handleLogout}
+              onStartCreate={startCreate}
+              onToggleForm={() => setFormOpen((open) => !open)}
+            />
 
             {isAdmin && formOpen && (
-              <section className="mb-8">
-                <div className="bg-white/80 backdrop-blur-sm border border-[#d4669f]/20 rounded-2xl p-4 md:p-6 shadow-sm">
-                  <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Título del área</label>
-                      <input
-                        value={formModule.title}
-                        onChange={(event) => setFormModule((prev) => ({ ...prev, title: event.target.value }))}
-                        className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                        placeholder="Ej. Terapia Holística"
-                      />
-                      <p className="text-xs text-[#5a3d7d]/70" style={{ fontFamily: 'Open Sans, sans-serif' }}>
-                        ID: {editingId ?? (formModule.title ? slugify(formModule.title) : 'se genera automáticamente')}
-                      </p>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Link de imagen</label>
-                      <input
-                        value={formModule.image}
-                        onChange={(event) => setFormModule((prev) => ({ ...prev, image: event.target.value }))}
-                        className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                        placeholder="https://..."
-                      />
-                    </div>
-                    <div className="md:col-span-2 space-y-2">
-                      <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Descripción corta</label>
-                      <textarea
-                        value={formModule.description}
-                        onChange={(event) => setFormModule((prev) => ({ ...prev, description: event.target.value }))}
-                        className="w-full px-4 py-3 rounded-lg border border-[#d4669f]/30 bg-white min-h-[80px]"
-                        placeholder="Texto que aparece en la tarjeta"
-                      />
-                    </div>
-                    <div className="md:col-span-2 space-y-2">
-                      <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Mensaje de WhatsApp</label>
-                      <textarea
-                        value={formModule.whatsappMessage}
-                        onChange={(event) => setFormModule((prev) => ({ ...prev, whatsappMessage: event.target.value }))}
-                        className="w-full px-4 py-3 rounded-lg border border-[#d4669f]/30 bg-white min-h-[80px]"
-                        placeholder="Mensaje precargado al abrir WhatsApp"
-                      />
-                    </div>
-
-                    <div className="md:col-span-2 border-t border-[#d4669f]/15 pt-4 mt-2 space-y-3">
-                      <div className="flex items-center gap-3">
-                        <input
-                          id="landing-toggle"
-                          type="checkbox"
-                          checked={useLanding}
-                          onChange={(event) => setUseLanding(event.target.checked)}
-                          className="w-4 h-4 text-[#d4669f] border-[#d4669f]/40 rounded"
-                        />
-                        <label htmlFor="landing-toggle" className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                          Usar landing prediseñada (editable)
-                        </label>
-                      </div>
-
-                      {useLanding && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Diseño de plantilla</label>
-                            <select
-                              value={formModule.landing?.templateType || 'plantilla1'}
-                              onChange={(event) => updateLandingField('templateType', event.target.value as LandingContent['templateType'])}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                            >
-                              <option value="plantilla1">Plantilla 1 · Terapeuta con 2 imágenes</option>
-                              <option value="plantilla2">Plantilla 2 · Perfil inmersivo</option>
-                            </select>
-                            <p className="text-xs text-[#5a3d7d]/70" style={{ fontFamily: 'Open Sans, sans-serif' }}>
-                              Plantilla 1: título, subtítulo, terapeuta, servicio, beneficios, 2 imágenes, botones de WhatsApp/Instagram/Facebook. Plantilla 2: diseño narrativo con sección de confianza y CTA destacado.
-                            </p>
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Título grande</label>
-                            <input
-                              value={formModule.landing?.heroTitle || ''}
-                              onChange={(event) => updateLandingField('heroTitle', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="Ej. Constelaciones Familiares"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Subtítulo</label>
-                            <input
-                              value={formModule.landing?.heroSubtitle || ''}
-                              onChange={(event) => updateLandingField('heroSubtitle', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="Ej. Terapia Sistémica Profunda"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Nombre del terapeuta</label>
-                            <input
-                              value={formModule.landing?.therapistName || ''}
-                              onChange={(event) => updateLandingField('therapistName', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="Ej. Angélica Montes"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Servicio</label>
-                            <input
-                              value={formModule.landing?.serviceName || ''}
-                              onChange={(event) => updateLandingField('serviceName', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="Ej. Sesiones individuales"
-                            />
-                          </div>
-                          <div className="md:col-span-2 space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Descripción héroe</label>
-                            <textarea
-                              value={formModule.landing?.heroDescription || ''}
-                              onChange={(event) => updateLandingField('heroDescription', event.target.value)}
-                              className="w-full px-4 py-3 rounded-lg border border-[#d4669f]/30 bg-white min-h-[80px]"
-                              placeholder="Texto introductorio de la landing"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Imagen héroe</label>
-                            <input
-                              value={formModule.landing?.heroImage || ''}
-                              onChange={(event) => updateLandingField('heroImage', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="https://..."
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Imagen secundaria</label>
-                            <input
-                              value={formModule.landing?.secondaryImage || ''}
-                              onChange={(event) => updateLandingField('secondaryImage', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="https://..."
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Puntos clave (uno por línea)</label>
-                            <textarea
-                              value={bulletText}
-                              onChange={(event) => updateLandingField('bulletPoints', event.target.value.split('\n'))}
-                              className="w-full px-4 py-3 rounded-lg border border-[#d4669f]/30 bg-white min-h-[80px]"
-                              placeholder={`Beneficio 1\nBeneficio 2`}
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Color acento (hex)</label>
-                            <input
-                              value={formModule.landing?.accentColor || ''}
-                              onChange={(event) => updateLandingField('accentColor', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="#e0c3fc"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Fondo desde (hex)</label>
-                            <input
-                              value={formModule.landing?.backgroundFrom || ''}
-                              onChange={(event) => updateLandingField('backgroundFrom', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="#1a237e"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Fondo hasta (hex)</label>
-                            <input
-                              value={formModule.landing?.backgroundTo || ''}
-                              onChange={(event) => updateLandingField('backgroundTo', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="#0d133d"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Texto CTA</label>
-                            <input
-                              value={formModule.landing?.ctaText || ''}
-                              onChange={(event) => updateLandingField('ctaText', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="Agenda por WhatsApp"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>WhatsApp (solo números)</label>
-                            <input
-                              value={formModule.landing?.whatsappNumber || ''}
-                              onChange={(event) => updateLandingField('whatsappNumber', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="573226639527"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Instagram (opcional)</label>
-                            <input
-                              value={formModule.landing?.instagramUrl || ''}
-                              onChange={(event) => updateLandingField('instagramUrl', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="https://instagram.com/usuario"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-semibold text-[#5a3d7d]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Facebook (opcional)</label>
-                            <input
-                              value={formModule.landing?.facebookUrl || ''}
-                              onChange={(event) => updateLandingField('facebookUrl', event.target.value)}
-                              className="w-full px-4 py-2 rounded-lg border border-[#d4669f]/30 bg-white"
-                              placeholder="https://facebook.com/usuario"
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    <div className="md:col-span-2 flex flex-wrap gap-3 justify-end">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setFormOpen(false);
-                          setFormModule(emptyModule);
-                          setEditingId(null);
-                        }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4669f]/30 text-[#5a3d7d] text-sm font-semibold bg-white"
-                      >
-                        <X className="w-4 h-4" /> Cancelar
-                      </button>
-                      <button
-                        type="submit"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#d4669f] to-[#87c4d4] text-white text-sm font-semibold shadow-sm"
-                      >
-                        <Save className="w-4 h-4" /> {editingId ? 'Guardar cambios' : 'Guardar área'}
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </section>
+              <AdminForm
+                formOpen={formOpen}
+                formModule={formModule}
+                editingId={editingId}
+                heroFileName={heroFileName}
+                secondaryFileName={secondaryFileName}
+                useLanding={useLanding}
+                bulletText={bulletText}
+                onToggleForm={() => setFormOpen((open) => !open)}
+                onSubmit={handleSubmit}
+                onChangeModule={setFormModule}
+                onChangeUseLanding={setUseLanding}
+                onAreaImageFile={handleAreaImageFile}
+                onChangeHeroFile={handleHeroFileInput}
+                onChangeSecondaryFile={handleSecondaryFileInput}
+                onDropHero={handleDropHero}
+                onDropSecondary={handleDropSecondary}
+                onDropAreaImage={handleDropAreaImage}
+                onChangeBulletText={(value) => updateLandingField('bulletPoints', value.split('\n'))}
+                onChangeLandingField={updateLandingField}
+                onCancel={() => {
+                  setFormOpen(false);
+                  setFormModule(emptyModule);
+                  setEditingId(null);
+                }}
+                onStartCreate={startCreate}
+              />
             )}
 
             <motion.div
@@ -748,15 +570,7 @@ export default function HomePage() {
 
         <GallerySection />
         <LocationSection />
-
-        <footer className="py-4 px-4 text-center">
-          <p 
-            className="text-[#5a3d7d]/60 text-xs md:text-sm"
-            style={{ fontFamily: 'Open Sans, sans-serif' }}
-          >
-            © 2026 Casa Holística Ananda · Todos los derechos reservados
-          </p>
-        </footer>
+        <Footer />
       </div>
 
       {selectedModule && (
