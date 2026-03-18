@@ -1,4 +1,5 @@
 import { MessageCircle } from 'lucide-react';
+import { openWhatsApp } from '../config/contact';
 import HeroSection from './HeroSection';
 import ModulesSection from './ModulesSection';
 import ContactForm from './ContactForm';
@@ -8,11 +9,7 @@ import Footer from './Footer';
 export default function EscuelaEspiritualContent() {
   const handleWhatsApp = () => {
     const message = 'Hola, quiero saber más sobre la Escuela Espiritual de Casa Holística Ananda.';
-    window.open(`https://wa.me/573226639527?text=${encodeURIComponent(message)}`, '_blank');
-  };
-
-  const handleContact = () => {
-    window.open('https://wa.me/573226639527?text=Hola,%20me%20interesa%20información%20sobre%20los%20cursos%20de%20Radiónica%20y%20Radiestesia', '_blank');
+    openWhatsApp(message);
   };
 
   return (

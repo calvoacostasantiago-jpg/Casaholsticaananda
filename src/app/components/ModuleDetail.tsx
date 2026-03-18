@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, MessageCircle, DollarSign, User, Calendar } from 'lucide-react';
+import { X, MessageCircle } from 'lucide-react';
 import TerapiaHolisticaDetail from './TerapiaHolisticaDetail';
+import MedicinaAyurvedaDetail from './MedicinaAyurvedaDetail';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { LandingContent, Module } from '../types';
 import { LandingDetail } from './LandingDetail';
+import { WHATSAPP_MAIN } from '../config/contact';
 
 interface ModuleDetailProps {
   moduleId: string;
@@ -15,10 +17,26 @@ interface ModuleDetailProps {
   children?: React.ReactNode;
 }
 
-const moduleInfo = {
+type ModuleInfo = {
+  title: string;
+  description: string;
+  services: string[];
+  whatsappMessage: string;
+  subtitle?: string;
+  highlight?: string;
+  therapist?: string;
+  pricing?: {
+    regular: string;
+    promo: string;
+    label?: string;
+  };
+  phone?: string;
+};
+
+const moduleInfo: Record<string, ModuleInfo> = {
   'terapia': {
-    title: 'Terapia Holística',
-    description: 'Ofrecemos sesiones personalizadas de sanación integral diseñadas para equilibrar cuerpo, mente y espíritu, trabajando en todos los niveles de tu ser.',
+    title: 'Terapia Radiónica y Radiestesia',
+    description: 'Sesiones personalizadas con enfoque radiónico y radiestesia para equilibrar cuerpo, mente y espíritu, trabajando en todos los niveles de tu ser.',
     services: [
       'Sesiones de Reiki y sanación energética',
       'Lectura de aura y chakras',
@@ -27,7 +45,7 @@ const moduleInfo = {
       'Equilibrio energético',
       'Consultas personalizadas'
     ],
-    whatsappMessage: 'Hola, quiero agendar una cita para Terapia Holística en Casa Holística Ananda.'
+    whatsappMessage: 'Hola, quiero agendar una cita para Terapia Radiónica y Radiestesia en Casa Holística Ananda.'
   },
   'constelaciones': {
     title: 'Constelaciones Familiares',
@@ -122,6 +140,7 @@ export default function ModuleDetail({ moduleId, onClose, module, children, isAd
   const info = moduleInfo[moduleId as keyof typeof moduleInfo];
   const [isEditing, setIsEditing] = useState(false);
   const [landingDraft, setLandingDraft] = useState<LandingContent | undefined>(module?.landing);
+  const backupPhone = WHATSAPP_MAIN;
 
   useEffect(() => {
     setLandingDraft(module?.landing);
@@ -129,7 +148,7 @@ export default function ModuleDetail({ moduleId, onClose, module, children, isAd
   }, [module?.id, module?.landing]);
 
   const handleWhatsApp = (messageOverride?: string, phoneOverride?: string) => {
-    const phone = phoneOverride || (info as any)?.phone || '573226639527';
+    const phone = phoneOverride || module?.whatsappNumber || info?.phone || backupPhone;
     const message = messageOverride || info?.whatsappMessage || module?.whatsappMessage || 'Hola, quiero más información sobre esta área.';
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
   };
@@ -245,8 +264,10 @@ export default function ModuleDetail({ moduleId, onClose, module, children, isAd
         >
           {/* Close button */}
           <button
+            type="button"
             onClick={onClose}
-            className="absolute top-4 right-4 md:top-6 md:right-6 z-20 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition-all duration-300 hover:scale-110"
+            aria-label="Cerrar"
+            className="absolute top-3 right-3 md:top-5 md:right-5 z-20 h-11 w-11 md:h-12 md:w-12 bg-white/95 rounded-full shadow-lg hover:bg-white transition-all duration-300 hover:scale-110 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4669f] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           >
             <X className="w-6 h-6 text-[#5a3d7d]" />
           </button>
@@ -259,6 +280,8 @@ export default function ModuleDetail({ moduleId, onClose, module, children, isAd
               </div>
             ) : moduleId === 'terapia' ? (
               <TerapiaHolisticaDetail onWhatsApp={() => handleWhatsApp()} />
+            ) : moduleId === 'ayurveda' ? (
+              <MedicinaAyurvedaDetail onWhatsApp={() => handleWhatsApp()} />
             ) : info ? (
               <div className="p-8 md:p-12">{/* ...existing code... */}</div>
             ) : module?.landing ? (
@@ -448,12 +471,14 @@ export default function ModuleDetail({ moduleId, onClose, module, children, isAd
                 <div className="space-y-4">
                   <h2 className="text-2xl md:text-3xl text-[#d4669f] font-bold">{module.title}</h2>
                   <p className="text-[#5a3d7d]/80 leading-relaxed">{module.description}</p>
-                  <button
-                    onClick={() => handleWhatsApp()}
-                    className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-[#d4669f] to-[#87c4d4] text-white rounded-full font-semibold text-sm"
-                  >
-                    <MessageCircle className="w-5 h-5" /> Hablar por WhatsApp
-                  </button>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => handleWhatsApp()}
+                      className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-[#d4669f] to-[#87c4d4] text-white rounded-full font-semibold text-sm"
+                    >
+                      <MessageCircle className="w-5 h-5" /> Hablar por WhatsApp
+                    </button>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -463,6 +488,7 @@ export default function ModuleDetail({ moduleId, onClose, module, children, isAd
               </div>
             )}
           </div>
+
         </motion.div>
       </motion.div>
     </AnimatePresence>

@@ -1,8 +1,6 @@
 import { CheckCircle, Sparkles, Star, Zap } from "lucide-react";
 import { motion } from "motion/react";
-// import module1Image from "figma:asset/cf1164c52b3a1752e556056d05f3d01138b7b823.png";
-// import module2Image from "figma:asset/fe3f087c02b2873d08bbe9a1fbbaea47e615411b.png";
-// import module3Image from "figma:asset/b15529c5b757ce9e07d05bdbef5e4f2bcdcc8196.png";
+import { openWhatsApp } from "../config/contact";
 
 interface ModuleProps {
   number: number;
@@ -27,10 +25,7 @@ function ModuleCard({
 }: ModuleProps) {
   const handleEnroll = () => {
     if (available) {
-      window.open(
-        `https://wa.me/573226639527?text=Hola,%20quiero%20inscribirme%20al%20Módulo%20${number}:%20${title}`,
-        "_blank",
-      );
+      openWhatsApp(`Hola, quiero inscribirme al Módulo ${number}: ${title}`);
     }
   };
 

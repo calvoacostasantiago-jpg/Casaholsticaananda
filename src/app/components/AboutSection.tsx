@@ -1,11 +1,10 @@
 import { Heart, Award, Users, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
-// import heroLogo from 'figma:asset/0f41631905cbdaeb70a79c7517a6468072b7820d.png';
-// import angelicaImage from 'figma:asset/cd60ea2b1a39a7831da0d12f7b5870f382116390.png';
+import { openWhatsApp } from '../config/contact';
 
 export default function AboutSection() {
   const handleContact = () => {
-    window.open('https://wa.me/573226639527?text=Hola%20Angélica,%20me%20gustaría%20conocer%20más%20sobre%20tu%20trabajo%20y%20las%20terapias%20que%20ofreces', '_blank');
+    openWhatsApp('Hola Angélica, me gustaría conocer más sobre tu trabajo y las terapias que ofreces');
   };
 
   const achievements = [
@@ -202,7 +201,6 @@ export default function AboutSection() {
                     border: 0,
                   }}
                   scrolling="no"
-                  allowtransparency="true"
                   allowFullScreen
                   allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                 ></iframe>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
+import { openWhatsApp } from '../config/contact';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ export default function ContactForm() {
     const message = `Hola, estoy interesado en un módulo futuro.\n\nNombre: ${formData.name}\nCorreo: ${formData.email}`;
     
     // Abrir WhatsApp con el mensaje
-    window.open(`https://wa.me/573226639527?text=${encodeURIComponent(message)}`, '_blank');
+    openWhatsApp(message);
     
     // Limpiar formulario
     setFormData({ name: '', email: '' });

@@ -1,12 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-// import exteriorImage from 'figma:asset/20077905e225fc33e5a5e5aca8b5f0d5a376543d.png';
-// import yogaRoomImage from 'figma:asset/ad7ab85df9fcd504821d5a2d263d12fe4a225d2d.png';
-// import therapyRoomImage from 'figma:asset/f4214becafc267adde0ef5377cfbc1bf4b05d209.png';
-// import gardenImage from 'figma:asset/ade65295e44df206a45fb84321755f368d8a953b.png';
-// import consultorioImage from 'figma:asset/177ee6866d70aad559c8b8e4fbc9c5c493a4fa19.png';
-// import colorfulRoomImage from 'figma:asset/e38308731caebb9355d48719b570390ce183fcdf.png';
 
 export default function GallerySection() {
   const [currentIndex, setCurrentIndex] = useState(0);

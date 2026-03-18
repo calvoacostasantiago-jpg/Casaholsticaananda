@@ -78,26 +78,27 @@ export default function ConstelacionesFamiliaresDetail() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-0 md:gap-10 mb-16"
+        className="relative z-10 w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10 mb-16"
       >
-        {/* Imagen grande, flotando a la derecha en desktop, arriba en mobile */}
+        {/* Imagen grande, ahora con relación 4:5 y sin superponer texto en mobile */}
         <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, type: 'spring', stiffness: 70 }}
-          className="order-2 md:order-1 flex-shrink-0 flex justify-center md:justify-end w-full md:w-1/2 -mt-10 md:mt-0"
+          transition={{ duration: 0.9, type: 'spring', stiffness: 60 }}
+          className="order-1 md:order-2 w-full md:w-1/2 flex justify-center"
           style={{ zIndex: 2 }}
         >
-          <img
-            src="/src/app/components/constelaciones-familiares-fondo.jpg(1).jpeg"
-            alt="Constelación familiar abrazo fondo"
-            className="rounded-[2.5rem] shadow-2xl w-72 h-72 md:w-[22rem] md:h-[22rem] object-cover border-4 border-[#e0c3fc]/70 bg-white/10 ring-4 ring-[#fff]/30 hover:scale-105 hover:shadow-[0_0_40px_#e0c3fc55] transition-transform duration-500 rotate-2 md:-rotate-3"
-            style={{ maxWidth: '100%', height: 'auto', boxShadow: '0 8px 32px 0 #e0c3fc33' }}
-          />
+          <div className="relative w-full max-w-sm aspect-[4/5] md:max-w-md overflow-hidden rounded-[2rem] border-4 border-[#e0c3fc]/70 bg-white/10 ring-4 ring-[#fff]/25 shadow-2xl">
+            <img
+              src="/src/app/components/constelaciones-familiares-fondo.jpg(1).jpeg"
+              alt="Constelación familiar abrazo fondo"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
         </motion.div>
         {/* Textos a la izquierda, con fondo decorativo y formas orgánicas */}
-        <div className="order-1 md:order-2 flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left relative">
+        <div className="order-2 md:order-1 flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left relative gap-2">
           {/* Fondo decorativo orgánico */}
           <div className="absolute -top-10 -left-10 md:-top-16 md:-left-16 w-40 h-40 md:w-64 md:h-64 bg-[#e0c3fc]/30 rounded-full blur-3xl z-0" />
           <motion.h1
@@ -135,6 +136,38 @@ export default function ConstelacionesFamiliaresDetail() {
 
       {/* Secciones con animaciones de entrada */}
       <div className="relative z-10 w-full max-w-3xl space-y-8 mb-10">
+        {/* Precios */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="grid md:grid-cols-3 gap-4"
+        >
+          {[{
+            title: 'Consultante grupal',
+            price: '$195.000',
+            note: 'Participa con tu caso en círculo grupal'
+          }, {
+            title: 'Representantes',
+            price: '$55.000',
+            note: 'Apoya el trabajo sistémico representando roles'
+          }, {
+            title: 'Consultante privada',
+            price: '$270.000',
+            note: 'Sesión individual con total confidencialidad'
+          }].map((item) => (
+            <div
+              key={item.title}
+              className="bg-white/20 backdrop-blur-lg rounded-2xl border border-white/30 shadow-xl p-5 text-center flex flex-col gap-2"
+            >
+              <p className="text-sm uppercase tracking-wide text-[#e0c3fc] font-semibold">{item.title}</p>
+              <p className="text-2xl font-bold text-white">{item.price}</p>
+              <p className="text-sm text-white/85">{item.note}</p>
+            </div>
+          ))}
+        </motion.div>
+
         {/* ¿Qué es una terapia...? */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}

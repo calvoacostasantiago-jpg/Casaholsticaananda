@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { MapPin, Phone, Clock, Instagram, Building2, Check, MessageCircle } from 'lucide-react';
+import { buildWhatsAppUrl, WHATSAPP_MAIN } from '../config/contact';
 
 export default function LocationSection() {
   const contactInfo = [
@@ -13,7 +14,7 @@ export default function LocationSection() {
       icon: Phone,
       title: 'Teléfono',
       content: '322 663 9527',
-      link: 'tel:+573226639527'
+      link: `tel:+${WHATSAPP_MAIN}`
     },
     {
       icon: Clock,
@@ -37,8 +38,8 @@ export default function LocationSection() {
   };
 
   const handleRentWhatsApp = () => {
-    const message = encodeURIComponent('Hola Angélica, me interesa conocer más sobre la renta de espacios en Casa Holística Ananda. ¿Podrías darme más información?');
-    window.open(`https://wa.me/573226639527?text=${message}`, '_blank');
+    const message = 'Hola Angélica, me interesa conocer más sobre la renta de espacios en Casa Holística Ananda. ¿Podrías darme más información?';
+    window.open(buildWhatsAppUrl(message, WHATSAPP_MAIN), '_blank', 'noopener,noreferrer');
   };
 
   return (

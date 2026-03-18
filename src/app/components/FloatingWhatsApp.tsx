@@ -1,6 +1,7 @@
 import { MessageCircle, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { openWhatsApp } from '../config/contact';
 
 export default function FloatingWhatsApp() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,12 +22,12 @@ export default function FloatingWhatsApp() {
   ];
 
   const handleQuickMessage = (message: string) => {
-    window.open(`https://wa.me/573226639527?text=${encodeURIComponent(message)}`, '_blank');
+    openWhatsApp(message);
     setIsOpen(false);
   };
 
   const handleDirectWhatsApp = () => {
-    window.open('https://wa.me/573226639527', '_blank');
+    openWhatsApp();
   };
 
   return (

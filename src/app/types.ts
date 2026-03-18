@@ -4,6 +4,7 @@ export interface Module {
   description: string;
   image: string;
   whatsappMessage: string;
+  whatsappNumber?: string;
   landing?: LandingContent;
 }
 

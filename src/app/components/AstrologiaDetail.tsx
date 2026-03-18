@@ -103,7 +103,7 @@ export default function AstrologiaDetail() {
 
       let w = 0;
       let h = 0;
-      let dpr = window.devicePixelRatio || 1;
+      const dpr = window.devicePixelRatio || 1;
       const particlesArr: { x: number; y: number; vx: number; vy: number; r: number }[] = [];
 
       const desired = () => Math.max(30, Math.min(90, Math.floor((w * h) / 18000)));
@@ -203,10 +203,10 @@ export default function AstrologiaDetail() {
     const cleanupForm = formHandler();
 
     return () => {
-      cleanupReveal && cleanupReveal();
-      cleanupParallax && cleanupParallax();
-      cleanupParticles && cleanupParticles();
-      cleanupForm && cleanupForm();
+      if (cleanupReveal) cleanupReveal();
+      if (cleanupParallax) cleanupParallax();
+      if (cleanupParticles) cleanupParticles();
+      if (cleanupForm) cleanupForm();
     };
   }, []);
 
@@ -345,7 +345,6 @@ export default function AstrologiaDetail() {
               <iframe
                 src="https://www.instagram.com/reel/DBHmzboyp4L/embed"
                 title="Reel de Instagram"
-                allowTransparency={true}
                 allow="encrypted-media; picture-in-picture"
                 scrolling="no"
                 frameBorder="0"

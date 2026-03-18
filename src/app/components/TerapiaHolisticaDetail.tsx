@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { MessageCircle, Sparkles, Star, Heart, Zap, User } from 'lucide-react';
+import { MessageCircle, Sparkles, Star, Heart, Zap } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface TerapiaHolisticaDetailProps {
@@ -12,6 +12,13 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
       name: 'Liberación emocional',
       description:
         'Soltar tristeza, miedo o ansiedad liberando bloqueos que afectan tu bienestar. Conecta con tu equilibrio interno y siente más paz, claridad y liviandad.',
+      price: '$120.000',
+      duration: '60-75 min'
+    },
+    {
+      name: 'Acompañamiento en duelo',
+      description:
+        'Sostén compasivo para transitar pérdidas afectivas o vitales. Espacio seguro para procesar el dolor, honrar el ciclo y recuperar la calma paso a paso.',
       price: '$120.000',
       duration: '60-75 min'
     },
@@ -51,6 +58,17 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
     <div className="relative overflow-hidden">
       {/* Fondo místico con degradados y elementos decorativos */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#2e0d4b] via-[#4a0d7a] to-[#6b1e9c] opacity-95" />
+      {/* Aurora suave para efecto místico */}
+      <motion.div
+        className="absolute inset-0 opacity-60 mix-blend-screen"
+        animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 20% 30%, rgba(255,255,255,0.14), transparent 35%), radial-gradient(circle at 80% 40%, rgba(212,175,55,0.2), transparent 40%), linear-gradient(120deg, rgba(255,109,225,0.18), rgba(98,243,255,0.12), rgba(212,175,55,0.14))',
+          backgroundSize: '200% 200%'
+        }}
+      />
       
       {/* Elementos decorativos flotantes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -158,14 +176,14 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
             className="text-4xl md:text-6xl mb-4 bg-gradient-to-r from-[#d4af37] via-white to-[#f0d9a8] bg-clip-text text-transparent"
             style={{ fontFamily: 'Cinzel, serif', fontWeight: 900 }}
           >
-            Terapia Holística
+            Angélica Montes · Terapeuta
           </h1>
           
           <p 
             className="text-2xl md:text-3xl text-[#f0d9a8] mb-6 italic"
             style={{ fontFamily: 'Playfair Display, serif', fontWeight: 600 }}
           >
-            Sanación de Cuerpo, Mente y Espíritu
+            Sesiones de Radiónica y Radiestesia
           </p>
 
           <div className="max-w-3xl mx-auto mb-8">
@@ -173,14 +191,14 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
               className="text-lg md:text-xl text-white/90 leading-relaxed"
               style={{ fontFamily: 'Open Sans, sans-serif' }}
             >
-              Liberación emocional, masaje analgésico con bolsas herbales y guía energética con radiónica y radiestesia. 
-              Te acompañamos a soltar bloqueos, armonizar tu energía y darle un flujo más ligero a tu vida.
+              Liberación emocional, acompañamiento en duelo, masaje analgésico con bolsas herbales y guía energética con radiónica y radiestesia. 
+              Sesiones personalizadas y virtuales para soltar bloqueos, armonizar tu energía y darle un flujo más ligero a tu vida.
             </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-2 mb-6">
             <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm text-white/85">Liberación emocional · Masaje analgésico · Radiónica</span>
-            <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm text-white/85">Atención 1 a 1 · Agenda flexible</span>
+            <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm text-white/85">Sesiones personalizadas y virtuales</span>
           </div>
 
           {/* Badge decorativo */}
@@ -194,7 +212,7 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
               className="text-white uppercase tracking-wider"
               style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
             >
-              Sesiones Personalizadas
+              Sesiones personalizadas y virtuales
             </span>
           </motion.div>
         </motion.div>
@@ -303,38 +321,6 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
             ))}
           </div>
         </div>
-
-        {/* Comparador rápido */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="max-w-5xl mx-auto mb-10"
-        >
-          <h3 
-            className="text-2xl md:text-3xl text-center text-[#d4af37] mb-6"
-            style={{ fontFamily: 'Cinzel, serif', fontWeight: 700 }}
-          >
-            Comparador de terapias
-          </h3>
-          <div className="grid md:grid-cols-3 gap-4">
-            {services.map((service, index) => (
-              <div
-                key={`compare-${index}`}
-                className="p-4 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm text-white/90 flex flex-col gap-2"
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <p className="font-semibold text-white" style={{ fontFamily: 'Montserrat, sans-serif' }}>{service.name}</p>
-                  <span className="text-sm px-2 py-1 rounded-full bg-white/10 border border-white/20">{service.duration || '60-90 min'}</span>
-                </div>
-                <p className="text-sm text-white/80 leading-relaxed" style={{ fontFamily: 'Open Sans, sans-serif' }}>
-                  {service.description}
-                </p>
-                <p className="text-[#d4af37] font-bold" style={{ fontFamily: 'Cinzel, serif' }}>{service.price}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
 
         {/* Situaciones típicas */}
         <motion.div
@@ -475,7 +461,7 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
                       className="text-white/80 leading-relaxed"
                       style={{ fontFamily: 'Open Sans, sans-serif' }}
                     >
-                      Acompañamiento respetuoso para liberar bloqueos emocionales y recuperar bienestar integral.
+                      Enfermera con 5 años en Nueva EPS, acompañando prevención y control de enfermedad crónica con enfoque humano y cercano.
                     </p>
                   </div>
                 </div>

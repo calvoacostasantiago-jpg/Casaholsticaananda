@@ -4,14 +4,23 @@
 import { motion } from "framer-motion";
 import { Heart, Star, ChevronDown, Mail, Instagram } from "lucide-react";
 import { useState } from "react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+
+const HYPNOSIS_IMAGE = '/assets/hipnosis.png';
+const BIO_IMAGE = '/assets/Maria.jpeg';
+const CENTER_FLOWER = 'https://cdnjs.cloudflare.com/ajax/libs/openmoji/14.0.0/color/png/1F33C.png';
 
 export default function HipnosisDetail() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const problems = [
-    "Ansiedad y estrés", "Fobias y miedos", "Traumas del pasado", "Baja autoestima",
-    "Insomnio", "Depresión", "Duelo y pérdida", "Control de peso", "Adicciones",
-    "Manejo del dolor", "Bloqueos emocionales", "Mejora del rendimiento"
+    "Ansiedad y estrés",
+    "Fobias y miedos",
+    "Hábitos no deseados (tabaquismo, alimentación emocional)",
+    "Bloqueos emocionales",
+    "Baja autoestima",
+    "Procesos de duelo",
+    "Mejora del rendimiento personal y profesional",
   ];
 
   const process = [
@@ -21,10 +30,18 @@ export default function HipnosisDetail() {
     { number: 4, title: "Integración", description: "Regreso consciente y reflexión sobre la experiencia" }
   ];
 
-  const testimonials = [
-    { name: "Camila R.", initials: "CR", text: "La hipnosis con Janeth fue una experiencia transformadora. Me sentí segura y acompañada en todo momento." },
-    { name: "Andrés M.", initials: "AM", text: "Superé mi ansiedad y ahora vivo con más tranquilidad. Recomiendo totalmente este proceso." },
-    { name: "Laura G.", initials: "LG", text: "El profesionalismo de Janeth me ayudó a sanar bloqueos emocionales de años." }
+  const benefitsLeft = [
+    "Calma profunda y relajación guiada",
+    "Liberación de bloqueos emocionales",
+    "Mejora de la calidad del sueño",
+    "Aumento de foco y claridad mental",
+  ];
+
+  const benefitsRight = [
+    "Refuerzo de la autoestima y confianza",
+    "Gestión de hábitos y ansiedad",
+    "Procesos de duelo con contención",
+    "Sesiones presenciales u online",
   ];
 
   const faqs = [
@@ -35,13 +52,23 @@ export default function HipnosisDetail() {
   ];
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/573117931032?text=Hola Janeth, me interesa más información sobre hipnosis clínica en Casa Holística Ananda", "_blank");
+    window.open("https://wa.me/573117931032?text=Hola, me interesa agendar una sesión de hipnosis clínica.", "_blank");
   };
 
   return (
     <div className="relative overflow-hidden">
       {/* Fondo místico gradiente azul-violeta */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a1446] via-[#3e206c] to-[#e0c3fc]" />
+      {/* Círculos hipnóticos suaves */}
+      <div className="absolute inset-0 opacity-50 mix-blend-screen" style={{ backgroundImage: 'radial-gradient(circle at 25% 30%, rgba(255,255,255,0.08), transparent 30%), radial-gradient(circle at 70% 20%, rgba(255,255,255,0.1), transparent 28%), radial-gradient(circle at 60% 70%, rgba(255,255,255,0.08), transparent 32%)' }} />
+      {/* Disco hipnótico sutil */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-0 opacity-35"
+        style={{ background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 55%)' }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+      />
       {/* Elementos decorativos flotantes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(12)].map((_, i) => (
@@ -113,60 +140,139 @@ export default function HipnosisDetail() {
           >
             Transforma tu Mente, Transforma tu Vida
           </p>
-          <p 
-            className="text-lg text-white/80 max-w-3xl mx-auto leading-relaxed"
-            style={{ fontFamily: 'Montserrat, sans-serif' }}
-          >
-            Descubre el poder de tu subconsciente para superar limitaciones y alcanzar tus objetivos
-          </p>
+          {/* espaciador retirado; info se muestra más abajo */}
         </motion.div>
 
-        {/* Bio de la Terapeuta con Glassmorphism */}
+        {/* Bloque místico con imagen central y beneficios a los lados */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mx-auto mb-12 p-8 bg-white/20 backdrop-blur-lg rounded-3xl border border-white/30 shadow-2xl"
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="relative max-w-6xl mx-auto mb-14 rounded-3xl overflow-hidden bg-white/8 backdrop-blur-xl border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
         >
-          <div className="flex flex-col md:flex-row items-center gap-6">
-            <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white/40 shadow-lg flex-shrink-0 flex items-center justify-center bg-white">
-              <span className="text-black font-bold">imagen</span>
+          {/* halo místico */}
+          <div className="absolute inset-0 opacity-70" style={{ backgroundImage: 'radial-gradient(circle at 50% 30%, rgba(255,255,255,0.18), transparent 38%), radial-gradient(circle at 30% 70%, rgba(255,109,225,0.15), transparent 45%), radial-gradient(circle at 70% 70%, rgba(98,243,255,0.18), transparent 45%)' }} />
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-80 h-80 bg-gradient-to-br from-purple-400/30 via-pink-400/20 to-cyan-300/10 blur-3xl" />
+
+          <div className="relative grid lg:grid-cols-3 gap-6 items-center p-6 md:p-10">
+            <div className="space-y-3">
+              {benefitsLeft.map((item, idx) => (
+                <div key={idx} className="flex items-start gap-3 p-3 rounded-2xl bg-white/10 border border-white/15 shadow-inner">
+                  <Star className="w-5 h-5 text-yellow-200 flex-shrink-0" />
+                  <span className="text-white" style={{ fontFamily: 'Montserrat, sans-serif' }}>{item}</span>
+                </div>
+              ))}
             </div>
-            <div className="text-center md:text-left">
-              <h3 
-                className="text-3xl text-white mb-2"
-                style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700 }}
+
+            <div className="relative flex items-center justify-center py-6">
+              <div className="absolute inset-0 animate-pulse" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.14), transparent 55%)' }} />
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.2, type: 'spring', damping: 12 }}
+                className="relative w-48 h-48 md:w-56 md:h-56"
               >
-                Janeth María Hincapié
-              </h3>
-              <p 
-                className="text-purple-200 mb-3"
-                style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}
-              >
-                Hipnoterapeuta Certificada
-              </p>
-              <p 
-                className="text-white/90 leading-relaxed mb-4"
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
-              >
-                Terapeuta certificada en hipnosis clínica, con más de 10 años de experiencia acompañando procesos de transformación personal y sanación emocional.
-              </p>
-              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                <span className="px-3 py-1 bg-purple-500/30 backdrop-blur-sm rounded-full text-white text-sm border border-purple-300/30">
-                  Hipnosis Clínica
-                </span>
-                <span className="px-3 py-1 bg-purple-500/30 backdrop-blur-sm rounded-full text-white text-sm border border-purple-300/30">
-                  PNL
-                </span>
-                <span className="px-3 py-1 bg-purple-500/30 backdrop-blur-sm rounded-full text-white text-sm border border-purple-300/30">
-                  Terapias Holísticas
-                </span>
-              </div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/40 via-pink-400/30 to-cyan-300/30 blur-2xl" />
+                <div className="absolute inset-2 rounded-full bg-white/15 border border-white/30" />
+                <img
+                  src={CENTER_FLOWER}
+                  alt="Símbolo hipnosis"
+                  className="w-full h-full object-contain relative z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.35)]"
+                  loading="lazy"
+                />
+              </motion.div>
+            </div>
+
+            <div className="space-y-3">
+              {benefitsRight.map((item, idx) => (
+                <div key={idx} className="flex items-start gap-3 p-3 rounded-2xl bg-white/10 border border-white/15 shadow-inner">
+                  <Heart className="w-5 h-5 text-pink-200 flex-shrink-0" />
+                  <span className="text-white" style={{ fontFamily: 'Montserrat, sans-serif' }}>{item}</span>
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>
 
-        {/* Problemas que aborda */}
+        {/* Servicios + Logo */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-6xl mx-auto mb-16 flex flex-col lg:flex-row items-center gap-12"
+        >
+          <div className="relative w-48 h-48 md:w-56 md:h-56 flex-shrink-0">
+            <ImageWithFallback
+              src={HYPNOSIS_IMAGE}
+              alt="Logo Janeth"
+              className="w-full h-full object-contain rounded-full shadow-2xl border-4 border-white/40 bg-white/5 p-1"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 rounded-full animate-ping-slow bg-white/15" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-400 via-pink-500 to-transparent opacity-60 mix-blend-screen" />
+            <motion.div
+              aria-hidden
+              className="absolute inset-[-18%] rounded-full"
+              style={{ background: 'conic-gradient(from 90deg, rgba(255,255,255,0.08), rgba(98,243,255,0.18), rgba(255,109,225,0.16), rgba(255,255,255,0.08))' }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+            />
+          </div>
+          <div className="w-full">
+            <h3 className="text-2xl text-white mb-4 text-center lg:text-left" style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700 }}>
+              Servicios que ofrezco
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {problems.map((problem, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-2 p-3 bg-white/10 rounded-xl backdrop-blur-sm"
+                >
+                  <Heart className="w-5 h-5 text-purple-300" />
+                  <span className="text-white" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    {problem}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Bio de la Terapeuta con Glassmorphism */}
+        {/* placeholder; bio will be reinserted later */}
+
+        {/* Acerca de la hipnosis */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="max-w-4xl mx-auto mb-12"
+        >
+          <div className="p-8 bg-white/15 backdrop-blur-lg rounded-3xl border border-white/25 shadow-2xl space-y-4 text-white/90" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <p>
+              La hipnosis clínica es un estado natural de concentración profunda que permite acceder al subconsciente, fortalecer la confianza y reprogramar patrones limitantes de manera segura y respetuosa.
+            </p>
+              <p>
+                Soy terapeuta especializada en hipnosis clínica, acompañando a personas en procesos de cambio profundo y transformación personal. Mi enfoque se basa en técnicas de hipnosis orientadas a trabajar directamente con el subconsciente para facilitar cambios positivos y duraderos.
+              </p>
+            <p>
+              Cada sesión es personalizada y adaptada a tus necesidades. Modalidad presencial u online, siempre con reserva previa, en un espacio profesional y confidencial.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-3 text-sm text-white/85">
+              <div className="p-3 rounded-2xl bg-white/10 border border-white/20">
+                <p className="font-semibold text-white">Modalidad</p>
+                <p>Presencial y online · Citas con previa reserva</p>
+              </div>
+              <div className="p-3 rounded-2xl bg-white/10 border border-white/20">
+                <p className="font-semibold text-white">Contacto</p>
+                <p>Email: himomaya18@gmail.com</p>
+                <p>WhatsApp: 311 793 1032</p>
+                <p>Instagram: @mariaymolina</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -242,50 +348,6 @@ export default function HipnosisDetail() {
                 </motion.div>
               ))}
             </div>
-          </div>
-        </motion.div>
-
-        {/* Testimonios */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="max-w-5xl mx-auto mb-12"
-        >
-          <h3 
-            className="text-2xl md:text-3xl text-white mb-6 text-center"
-            style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700 }}
-          >
-            Testimonios
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 * index }}
-                className="p-6 bg-white/20 backdrop-blur-lg rounded-2xl border border-white/30 shadow-xl"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white font-bold">
-                    {testimonial.initials}
-                  </div>
-                  <p 
-                    className="text-white font-semibold"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
-                  >
-                    {testimonial.name}
-                  </p>
-                </div>
-                <p 
-                  className="text-white/90 italic"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
-                >
-                  "{testimonial.text}"
-                </p>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
 
@@ -416,6 +478,47 @@ export default function HipnosisDetail() {
             <Mail className="w-5 h-5" />
             Email
           </motion.button>
+        </motion.div>
+
+        {/* Bio de la Terapeuta (al final) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          className="max-w-4xl mx-auto mt-12 mb-12 p-8 bg-white/20 backdrop-blur-lg rounded-3xl border border-white/30 shadow-2xl"
+        >
+          <div className="flex flex-col md:flex-row items-center gap-6">
+            <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white/40 shadow-lg flex-shrink-0 bg-white/10">
+              <ImageWithFallback
+                src={BIO_IMAGE}
+                alt="Janeth María Hincapié"
+                className="w-full h-full object-contain bg-white/5"
+                loading="lazy"
+              />
+            </div>
+            <div className="text-center md:text-left">
+              <h3 
+                className="text-3xl text-white mb-2"
+                style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700 }}
+              >
+                Janeth María Hincapié
+              </h3>
+              <p 
+                className="text-purple-200 mb-3"
+                style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}
+              >
+                Hipnoterapeuta Certificada
+              </p>
+              <div className="text-white/85 text-sm leading-relaxed space-y-2 mb-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <p>
+                  Soy terapeuta especializada en hipnosis clínica, acompañando a personas en procesos de cambio profundo y transformación personal. Mi enfoque se basa en técnicas de hipnosis, orientadas a trabajar directamente con el subconsciente para facilitar cambios positivos y duraderos.
+                </p>
+                <p>
+                  Trabajo con personas que desean superar ansiedad, fobias, hábitos no deseados, bloqueos emocionales, baja autoestima, procesos de duelo y mejorar su rendimiento personal o profesional.
+                </p>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>

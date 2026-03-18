@@ -1,10 +1,10 @@
 import { Sparkles, ArrowDown } from 'lucide-react';
 import { motion } from 'motion/react';
-// import heroLogo from 'figma:asset/0f41631905cbdaeb70a79c7517a6468072b7820d.png';
+import { openWhatsApp } from '../config/contact';
 
 export default function HeroSection() {
   const handleCTA = () => {
-    window.open('https://wa.me/573226639527?text=Hola,%20quiero%20inscribirme%20al%20Módulo%201%20de%20Radiónica%20y%20Radiestesia', '_blank');
+    openWhatsApp('Hola, quiero inscribirme al Módulo 1 de Radiónica y Radiestesia');
   };
 
   const scrollToModules = () => {

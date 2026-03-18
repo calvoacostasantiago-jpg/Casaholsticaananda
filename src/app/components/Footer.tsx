@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
 import { motion } from 'motion/react';
+import { WHATSAPP_MAIN } from '../config/contact';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,7 +10,7 @@ export default function Footer() {
       icon: Phone,
       label: "WhatsApp",
       value: "+57 322 663 9527",
-      link: "https://wa.me/573226639527"
+      link: `https://wa.me/${WHATSAPP_MAIN}`
     },
     {
       icon: Mail,

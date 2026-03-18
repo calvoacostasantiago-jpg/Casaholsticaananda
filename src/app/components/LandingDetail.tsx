@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { MessageCircle, Sparkles } from 'lucide-react';
 import { LandingContent } from '../types';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { WHATSAPP_MAIN } from '../config/contact';
 
 interface LandingDetailProps {
   landing: LandingContent;
@@ -9,6 +10,9 @@ interface LandingDetailProps {
 }
 
 export function LandingDetail({ landing, onWhatsApp }: LandingDetailProps) {
+  const backupPhone = WHATSAPP_MAIN;
+  const backupMessage = 'Hola Angélica, me ayudas con información de esta área en Casa Holística Ananda?';
+
   const {
     heroTitle,
     heroSubtitle,
@@ -30,6 +34,10 @@ export function LandingDetail({ landing, onWhatsApp }: LandingDetailProps) {
 
   const handleCTA = () => {
     onWhatsApp(landing.ctaText || undefined, whatsappNumber);
+  };
+
+  const handleBackupCTA = () => {
+    onWhatsApp(backupMessage, backupPhone);
   };
 
   if (templateType === 'plantilla2') {
@@ -91,6 +99,12 @@ export function LandingDetail({ landing, onWhatsApp }: LandingDetailProps) {
                   }}
                 >
                   <MessageCircle className="w-4 h-4" /> {ctaText || 'Hablar por WhatsApp'}
+                </button>
+                <button
+                  onClick={handleBackupCTA}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white/90 border border-white/30 hover:border-white/60 bg-white/10"
+                >
+                  <MessageCircle className="w-4 h-4" /> WhatsApp Angélica (+57 322 6639527)
                 </button>
                 {instagramUrl && (
                   <a
@@ -191,6 +205,12 @@ export function LandingDetail({ landing, onWhatsApp }: LandingDetailProps) {
               >
                 <MessageCircle className="w-4 h-4" /> {ctaText || 'Hablar por WhatsApp'}
               </button>
+                <button
+                  onClick={handleBackupCTA}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white/90 border border-white/30 hover:border-white/60 bg-white/10"
+                >
+                  <MessageCircle className="w-4 h-4" /> WhatsApp Angélica (+57 322 6639527)
+                </button>
               {instagramUrl && (
                 <a
                   href={instagramUrl}
