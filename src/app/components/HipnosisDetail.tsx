@@ -8,7 +8,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const HYPNOSIS_IMAGE = '/assets/hipnosis.png';
 const BIO_IMAGE = '/assets/Maria.jpeg';
-const CENTER_FLOWER = 'https://cdnjs.cloudflare.com/ajax/libs/openmoji/14.0.0/color/png/1F33C.png';
+const CENTER_FLOWER = '/assets/1773929376.png';
 
 export default function HipnosisDetail() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -168,17 +168,28 @@ export default function HipnosisDetail() {
               <div className="absolute inset-0 animate-pulse" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.14), transparent 55%)' }} />
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.2, type: 'spring', damping: 12 }}
+                animate={{ scale: 1, opacity: 1, rotate: [0, 2, -2, 0] }}
+                transition={{ duration: 1, delay: 0.2, type: 'spring', damping: 12 }}
                 className="relative w-48 h-48 md:w-56 md:h-56"
               >
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/40 via-pink-400/30 to-cyan-300/30 blur-2xl" />
-                <div className="absolute inset-2 rounded-full bg-white/15 border border-white/30" />
-                <img
-                  src={CENTER_FLOWER}
-                  alt="Símbolo hipnosis"
-                  className="w-full h-full object-contain relative z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.35)]"
-                  loading="lazy"
+                <div className="absolute inset-1.5 rounded-full bg-white/12 border border-white/30 backdrop-blur-sm" />
+                <div className="absolute inset-3 rounded-full bg-gradient-to-b from-white/70 via-white/30 to-white/5 border border-white/20 shadow-[0_15px_40px_rgba(0,0,0,0.25)]" />
+                <div className="absolute inset-4 rounded-full overflow-hidden bg-white/90">
+                  <img
+                    src={CENTER_FLOWER}
+                    alt="Símbolo hipnosis"
+                    className="w-full h-full object-cover scale-110"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="absolute inset-2 rounded-full border border-white/40 animate-pulse" />
+                <motion.div
+                  aria-hidden
+                  className="absolute inset-[-12%] rounded-full" 
+                  style={{ background: 'conic-gradient(from 120deg, rgba(255,255,255,0.12), rgba(98,243,255,0.18), rgba(255,109,225,0.16), rgba(255,255,255,0.12))' }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
                 />
               </motion.div>
             </div>

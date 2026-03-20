@@ -9,49 +9,54 @@ interface TerapiaHolisticaDetailProps {
 export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaDetailProps) {
   const services = [
     {
+      name: 'Servicios de Radiestesia y Radiónica (mesas: transmutación, sanación, protección)',
+      description:
+        'Lectura y activación con mesa radiónica: transmutar bloqueos, sanar y proteger. Incluye diagnóstico con péndulo y tablas biométricas.',
+      price: '$140.000',
+      duration: '2 horas',
+      featured: true
+    },
+    {
+      name: 'Limpieza, alineación y protección energética (chakras, aura y espacios)',
+      description:
+        'Equilibrio profundo de chakras y aura; limpieza y blindaje de casa/negocio. Sientes alivio, claridad y ligereza en tus ambientes.',
+      price: '$90.000',
+      duration: '60-90 min'
+    },
+    {
       name: 'Liberación emocional',
       description:
         'Soltar tristeza, miedo o ansiedad liberando bloqueos que afectan tu bienestar. Conecta con tu equilibrio interno y siente más paz, claridad y liviandad.',
       price: '$120.000',
-      duration: '60-75 min'
+      duration: '60 min'
     },
     {
       name: 'Acompañamiento en duelo',
       description:
         'Sostén compasivo para transitar pérdidas afectivas o vitales. Espacio seguro para procesar el dolor, honrar el ciclo y recuperar la calma paso a paso.',
       price: '$120.000',
-      duration: '60-75 min'
+      duration: '60 min'
     },
     {
-      name: 'Masaje analgésico con bolsas herbales calientes',
+      name: 'Masajes analgésicos con bolsas herbales',
       description:
-        'Experiencia profundamente relajante, analgésica y curativa con paquetes de tela natural rellenos de hierbas, aromaterapia y cuencos tibetanos.',
+        'Relajación analgésica con hierbas, aromaterapia y sonido. Alivia tensión muscular y dolor mientras armoniza tu campo energético.',
       price: '$120.000',
       duration: '70-90 min'
-    },
-    {
-      name: 'Guía energética con Radiónica y Radiestesia (Tabla Radiónica)',
-      description:
-        'Limpieza y protección de aura, hogar y negocio. Diagnóstico con tablas biométricas y activación de frecuencias para que la vida fluya de forma armoniosa.',
-      price: '$140.000',
-      duration: '60-90 min',
-      featured: true
     }
   ];
 
   const benefits = [
-    'Paz, claridad y liviandad emocional',
-    'Liberación de emociones atrapadas y bloqueos',
-    'Relajación profunda y alivio analgésico',
-    'Ambientes más ligeros en hogar y negocio',
-    'Protección y limpieza de aura y espacios',
-    'Diagnóstico energético con tablas biométricas',
-    'Activación de frecuencias para que la vida fluya',
-    'Menos ansiedad y mejor descanso',
-    'Mayor foco para decisiones y propósito',
-    'Reconexión con tu equilibrio natural',
-    'Soporte en crisis emocionales o estancamiento',
-    'Acompañamiento respetuoso y personalizado'
+    'Mesa radiónica: transmutar bloqueos y proteger tu energía',
+    'Limpieza y blindaje de chakras, aura, hogar y negocio',
+    'Liberación emocional para ansiedad, miedo y tristeza',
+    'Acompañamiento en duelo con contención y calma',
+    'Masajes analgésicos con hierbas para aliviar dolor y tensiones',
+    'Mayor claridad mental y descanso reparador',
+    'Ambientes ligeros y armonizados que apoyan tus metas',
+    'Diagnóstico con péndulo y tablas biométricas para decisiones claras',
+    'Activación de frecuencias para que la vida fluya con menos resistencia',
+    'Bienestar integral: cuerpo, mente y energía alineados'
   ];
 
   return (
@@ -222,22 +227,54 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-5xl mx-auto mb-12 grid md:grid-cols-[1.1fr_0.9fr] gap-4 items-stretch"
+          className="max-w-5xl mx-auto mb-10 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-5 md:gap-6 items-stretch"
         >
-          <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-[#d4af37]/30 relative min-h-[280px]">
-            <ImageWithFallback
-              src="https://images.unsplash.com/photo-1591630060069-7cb1f16261b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob2xpc3RpYyUyMGhlYWxpbmclMjBoYW5kcyUyMGVuZXJneXxlbnwxfHx8fDE3NzEyNTUzNzV8MA&ixlib=rb-4.1.0&q=80&w=1080"
-              alt="Terapia Holística"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2e0d4b] via-transparent to-transparent" />
+          <div className="rounded-3xl shadow-2xl border-2 md:border-4 border-[#d4af37]/30 relative min-h-[320px] p-5 md:p-6 bg-gradient-to-br from-[#2e0d4b]/90 via-[#4a0d7a]/90 to-[#6b1e9c]/85 overflow-hidden">
+            <div className="absolute inset-0 opacity-45" style={{ backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), transparent 32%), radial-gradient(circle at 70% 60%, rgba(212,175,55,0.18), transparent 36%)' }} />
+            <div className="relative z-10 space-y-4">
+              <div>
+              <p className="text-xs md:text-sm text-[#f0d9a8] uppercase tracking-[0.18em]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>
+                  Servicios de Radiónica y Radiestesia
+                </p>
+              <h3 className="text-xl md:text-2xl text-white" style={{ fontFamily: 'Cinzel, serif', fontWeight: 800 }}>
+                  Agenda tu sesión con Angélica
+                </h3>
+              </div>
+
+              <div className="space-y-3">
+                {services.map((service, idx) => (
+                <div key={`panel-service-${idx}`} className="p-3 rounded-2xl bg-white/10 border border-white/15">
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-3">
+                      <div className="space-y-1">
+                      <p className="text-white font-semibold text-sm md:text-base" style={{ fontFamily: 'Montserrat, sans-serif' }}>{service.name}</p>
+                      <p className="text-white/80 text-sm" style={{ fontFamily: 'Open Sans, sans-serif' }}>{service.description}</p>
+                      <p className="text-[#f0d9a8] text-sm" style={{ fontFamily: 'Cinzel, serif', fontWeight: 700 }}>{service.price} · {service.duration || '60-90 min'}</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={onWhatsApp}
+                      className="w-full md:w-auto flex-shrink-0 px-4 py-2 rounded-full bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white text-xs md:text-sm font-semibold shadow-[0_0_16px_rgba(37,211,102,0.45)] hover:shadow-[0_0_24px_rgba(37,211,102,0.55)] transition text-center"
+                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      >
+                        Agendar
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-2 pt-2">
+              <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] md:text-xs text-white/85">Presencial u online</span>
+              <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] md:text-xs text-white/85">Duración según servicio</span>
+              </div>
+            </div>
           </div>
           <div className="flex items-center justify-center">
-            <div className="relative w-full max-w-xs aspect-[9/16] rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+            <div className="relative w-full max-w-sm md:max-w-xs aspect-[9/16] rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
               <iframe
-                src="https://www.instagram.com/reel/DRiY686DjSc/embed"
+                src="https://www.instagram.com/reel/DU8v42RjnjL/embed"
                 title="Reel de Instagram Terapia Holística"
-                allow="encrypted-media; picture-in-picture"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                 allowFullScreen
                 className="absolute inset-0 w-full h-full"
                 scrolling="no"
@@ -247,82 +284,6 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
           </div>
         </motion.div>
 
-        {/* Servicios ofrecidos */}
-        <div className="max-w-5xl mx-auto mb-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-3xl md:text-4xl text-center text-[#d4af37] mb-8"
-            style={{ fontFamily: 'Cinzel, serif', fontWeight: 700 }}
-          >
-            Servicios Disponibles
-          </motion.h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
-                className={`relative p-6 rounded-2xl backdrop-blur-sm border-2 transition-all duration-300 hover:scale-105 ${
-                  service.featured
-                    ? 'bg-gradient-to-br from-[#d4af37]/30 to-[#d4669f]/30 border-[#d4af37] shadow-[0_0_30px_rgba(212,175,55,0.4)]'
-                    : 'bg-white/10 border-white/20 hover:border-[#d4af37]/50'
-                }`}
-              >
-                {service.featured && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-[#d4af37] to-[#f0d9a8] rounded-full">
-                    <p 
-                      className="text-xs text-[#2e0d4b] uppercase tracking-wider"
-                      style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
-                    >
-                      Recomendada
-                    </p>
-                  </div>
-                )}
-
-                <div className="flex items-start justify-between mb-3">
-                  <h3 
-                    className="text-xl text-white pr-4"
-                    style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
-                  >
-                    {service.name}
-                  </h3>
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#d4af37] to-[#d4669f] flex items-center justify-center">
-                      <Sparkles className="w-5 h-5 text-white" />
-                    </div>
-                  </div>
-                </div>
-
-                <p 
-                  className="text-white/80 text-sm mb-4"
-                  style={{ fontFamily: 'Open Sans, sans-serif' }}
-                >
-                  {service.description}
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p 
-                      className="text-2xl text-[#d4af37]"
-                      style={{ fontFamily: 'Cinzel, serif', fontWeight: 700 }}
-                    >
-                      {service.price}
-                    </p>
-                    <p className="text-xs text-white/75" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                      {service.duration || '60-90 min'}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Situaciones típicas */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -530,7 +491,7 @@ export default function TerapiaHolisticaDetail({ onWhatsApp }: TerapiaHolisticaD
               className="text-2xl md:text-3xl text-white mb-4"
               style={{ fontFamily: 'Cinzel, serif', fontWeight: 700 }}
             >
-              ¿Lista para Transformar tu Vida?
+              Transforma tu vida
             </h3>
 
             <p 

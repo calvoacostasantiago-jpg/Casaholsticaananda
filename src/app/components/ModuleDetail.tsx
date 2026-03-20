@@ -35,15 +35,14 @@ type ModuleInfo = {
 
 const moduleInfo: Record<string, ModuleInfo> = {
   'terapia': {
-    title: 'Terapia Radiónica y Radiestesia',
-    description: 'Sesiones personalizadas con enfoque radiónico y radiestesia para equilibrar cuerpo, mente y espíritu, trabajando en todos los niveles de tu ser.',
+    title: 'Angélica Montes · Terapia',
+    description: 'Radiónica y radiestesia para limpiar, proteger y armonizar tu energía con mesas de transmutación, sanación y protección.',
     services: [
-      'Sesiones de Reiki y sanación energética',
-      'Lectura de aura y chakras',
-      'Terapia con cristales y gemas',
-      'Aromaterapia terapéutica',
-      'Equilibrio energético',
-      'Consultas personalizadas'
+      'Mesa radiónica: transmutación, sanación y protección (2h)',
+      'Limpieza, alineación y blindaje energético (chakras, aura, espacios)',
+      'Liberación emocional (1h)',
+      'Acompañamiento en duelo (1h)',
+      'Masaje analgésico con bolsas herbales'
     ],
     whatsappMessage: 'Hola, quiero agendar una cita para Terapia Radiónica y Radiestesia en Casa Holística Ananda.'
   },

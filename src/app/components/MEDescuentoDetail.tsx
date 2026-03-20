@@ -81,24 +81,24 @@ export default function MEDescuentoDetail() {
         </motion.div>
       ))}
 
-      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-7 lg:px-12 py-14 md:py-18 space-y-12">
+      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-7 lg:px-12 py-12 md:py-16 space-y-10">
         {/* Hero */}
         <motion.section
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="bg-white/92 backdrop-blur-xl border border-white/70 rounded-3xl shadow-xl p-8 md:p-12"
+          className="bg-white/92 backdrop-blur-xl border border-white/70 rounded-3xl shadow-xl p-6 sm:p-8 md:p-12"
         >
-          <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
+          <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-10 items-start">
             <div className="space-y-5">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffe7ef] text-[#b33a65] text-sm font-semibold" style={{ fontFamily: 'Lato, Open Sans, sans-serif' }}>
                 MEDescuento · Cercanía y confianza
                 <ShieldCheck className="w-4 h-4" />
               </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl text-[#1f2d3d] leading-tight" style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700 }}>
+              <h1 className="text-2xl md:text-4xl lg:text-5xl text-[#1f2d3d] leading-tight" style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700 }}>
                 Planes de salud y bienestar pensados para tu familia y los abuelos
               </h1>
-              <p className="text-lg text-[#324a63] max-w-3xl" style={{ fontFamily: 'Lato, Open Sans, sans-serif' }}>
+              <p className="text-base md:text-lg text-[#324a63] max-w-3xl" style={{ fontFamily: 'Lato, Open Sans, sans-serif' }}>
                 Beneficios claros en salud, acompañamiento exequial y bienestar integral. Atención amable y sencilla para que agendar sea fácil para todos.
               </p>
               <div className="flex flex-wrap gap-3">
@@ -106,7 +106,7 @@ export default function MEDescuentoDetail() {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={handleWhatsAppMain}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#e86f9d] text-white shadow-lg hover:shadow-xl"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#e86f9d] text-white shadow-lg hover:shadow-xl w-full sm:w-auto"
                   style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
                 >
                   <MessageCircle className="w-5 h-5" />
@@ -116,7 +116,7 @@ export default function MEDescuentoDetail() {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => window.open('https://www.medescuento.com/', '_blank')}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-[#1f2d3d] border border-[#1f2d3d]/15 shadow-md hover:shadow-lg"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-[#1f2d3d] border border-[#1f2d3d]/15 shadow-md hover:shadow-lg w-full sm:w-auto"
                   style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
                 >
                   Visitar sitio
@@ -195,25 +195,26 @@ export default function MEDescuentoDetail() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.05 }}
-          className="bg-white/94 backdrop-blur-xl border border-white/70 rounded-3xl shadow-xl p-8 md:p-10"
+          className="bg-white/94 backdrop-blur-xl border border-white/70 rounded-3xl shadow-xl p-6 sm:p-8 md:p-10"
         >
-          <div className="grid md:grid-cols-[320px_1fr] gap-8 items-center">
-            <div className="relative mx-auto md:mx-0">
+          <div className="grid md:grid-cols-[280px_1fr] gap-6 md:gap-8 items-center">
+            <div className="relative mx-auto md:mx-0 w-full max-w-[230px] sm:max-w-[260px]">
               <div className="absolute -inset-3 rounded-2xl bg-gradient-to-br from-[#e86f9d]/18 via-[#f5a8c2]/18 to-transparent blur" />
               <div className="relative rounded-2xl border border-white/80 bg-white/98 shadow-md overflow-hidden">
-                <div className="relative" style={{ width: 320 }}>
+                <div className="relative w-full">
                   <div className="relative aspect-[9/16] overflow-hidden" style={{ clipPath: 'inset(0 0 14% 0)' }}>
                     <iframe
                       src="https://www.instagram.com/reel/DRkShFPkV9s/embed"
                       title="MEDescuento video"
                       className="absolute inset-0 w-full h-full"
                       allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      allowFullScreen
                     />
                   </div>
                 </div>
               </div>
             </div>
-            <div className="relative min-h-[240px] flex items-center justify-center">
+            <div className="relative min-h-[200px] md:min-h-[240px] flex items-center justify-center">
               {[...Array(5)].map((_, i) => (
                 <motion.div
                   key={`heart-${i}`}
@@ -252,9 +253,9 @@ export default function MEDescuentoDetail() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.08 }}
           ref={plansRef}
-          className="grid lg:grid-cols-3 gap-6"
+          className="grid lg:grid-cols-3 gap-5"
         >
-          <div className="p-6 rounded-3xl bg-white/95 backdrop-blur-lg border border-white/70 shadow-lg space-y-3" style={{ fontFamily: 'Lato, Open Sans, sans-serif' }}>
+          <div className="p-5 sm:p-6 rounded-3xl bg-white/95 backdrop-blur-lg border border-white/70 shadow-lg space-y-3" style={{ fontFamily: 'Lato, Open Sans, sans-serif' }}>
             <div className="flex items-center gap-2 text-[#1f2d3d] font-semibold">
               <ShieldCheck className="w-5 h-5 text-[#e86f9d]" />
               Plan Exequial
@@ -269,7 +270,7 @@ export default function MEDescuentoDetail() {
             </ul>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white/95 backdrop-blur-lg border border-white/70 shadow-lg space-y-3" style={{ fontFamily: 'Lato, Open Sans, sans-serif' }}>
+          <div className="p-5 sm:p-6 rounded-3xl bg-white/95 backdrop-blur-lg border border-white/70 shadow-lg space-y-3" style={{ fontFamily: 'Lato, Open Sans, sans-serif' }}>
             <div className="flex items-center gap-2 text-[#1f2d3d] font-semibold">
               <HeartPulse className="w-5 h-5 text-[#d65780]" />
               Plan Complementario de Salud
@@ -284,7 +285,7 @@ export default function MEDescuentoDetail() {
             </ul>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white/95 backdrop-blur-lg border border-white/70 shadow-lg space-y-3" style={{ fontFamily: 'Lato, Open Sans, sans-serif' }}>
+          <div className="p-5 sm:p-6 rounded-3xl bg-white/95 backdrop-blur-lg border border-white/70 shadow-lg space-y-3" style={{ fontFamily: 'Lato, Open Sans, sans-serif' }}>
             <div className="flex items-center gap-2 text-[#1f2d3d] font-semibold">
               <HandHeart className="w-5 h-5 text-[#f19bb7]" />
               Bienestar y Empresa
@@ -305,7 +306,7 @@ export default function MEDescuentoDetail() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.12 }}
-          className="p-10 rounded-3xl bg-gradient-to-r from-[#f7b7cc] via-[#e86f9d] to-[#d65780] text-white shadow-2xl border border-white/10"
+          className="p-6 sm:p-8 md:p-10 rounded-3xl bg-gradient-to-r from-[#f7b7cc] via-[#e86f9d] to-[#d65780] text-white shadow-2xl border border-white/10"
         >
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4" style={{ fontFamily: 'Lato, Open Sans, sans-serif' }}>
             <div className="space-y-2 text-center lg:text-left">
@@ -317,7 +318,7 @@ export default function MEDescuentoDetail() {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={handleWhatsAppMain}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-[#1f2d3d] font-semibold shadow-lg"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-[#1f2d3d] font-semibold shadow-lg w-full sm:w-auto"
                 style={{ fontFamily: 'Montserrat, sans-serif' }}
               >
                 <MessageCircle className="w-5 h-5" /> Enviar WhatsApp
@@ -326,7 +327,7 @@ export default function MEDescuentoDetail() {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => window.open('mailto:medescuentosas@gmail.com')}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/70 text-white font-semibold shadow-lg"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/70 text-white font-semibold shadow-lg w-full sm:w-auto"
                 style={{ fontFamily: 'Montserrat, sans-serif' }}
               >
                 <Mail className="w-5 h-5" /> Enviar correo

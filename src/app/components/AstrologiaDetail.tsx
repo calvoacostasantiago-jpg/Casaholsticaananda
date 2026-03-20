@@ -345,10 +345,11 @@ export default function AstrologiaDetail() {
               <iframe
                 src="https://www.instagram.com/reel/DBHmzboyp4L/embed"
                 title="Reel de Instagram"
-                allow="encrypted-media; picture-in-picture"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                 scrolling="no"
                 frameBorder="0"
                 className="w-full h-full"
+                allowFullScreen
               ></iframe>
             </div>
             <span></span>

@@ -19,7 +19,7 @@ import { openWhatsApp, WHATSAPP_DEFAULT_MESSAGE } from '../config/contact';
 const DEFAULT_MODULES: Module[] = [
   {
     id: 'terapia',
-    title: 'Terapia Radiónica y Radiestesia',
+    title: 'Angélica Montes Terapeuta',
     description: 'Sesiones personalizadas con enfoque radiónico y radiestesia para equilibrar cuerpo, mente y espíritu.',
     image: '/assets/Find Clear Answers_ Crystal Pendulum for Energy Work.png',
     whatsappMessage: 'Hola, quiero información sobre Terapia Radiónica y Radiestesia en Casa Holística Ananda.'

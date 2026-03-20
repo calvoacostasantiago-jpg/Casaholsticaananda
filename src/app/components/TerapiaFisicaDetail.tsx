@@ -210,6 +210,7 @@ export default function TerapiaFisicaDetail() {
                   title="Testimonio Instagram"
                   className="absolute inset-0 w-full h-full"
                   allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen
                 />
               </div>
             </div>
